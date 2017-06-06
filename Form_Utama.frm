@@ -509,7 +509,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   102957057
+         Format          =   41222145
          CurrentDate     =   41714
       End
       Begin MSComCtl2.DTPicker dtfinish_date 
@@ -521,7 +521,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   102957057
+         Format          =   41222145
          CurrentDate     =   41714
       End
       Begin VB.Label Label4 
@@ -1053,7 +1053,6 @@ Else
         qry_batch_number = rscompletion_slip.Fields("batch_number")
         batch_number = qry_batch_number
         Me.tbatchnumber.Text = batch_number
-        
     End If
 End If
 
@@ -1293,11 +1292,6 @@ If KeyCode = vbKeyReturn Then
     Me.cproses2.Text = Me.cnowinding.Text
     dtfinish_date.SetFocus
 End If
-
-End Sub
-
-Private Sub Command1_Click()
-
 End Sub
 
 Private Sub completion_slip_Click()
@@ -1918,10 +1912,10 @@ Dim sisaqty As Integer
 For colna = 1 To Form_Status_MC.MSFlexGrid1.Cols - 1
     For rowna = 3 To Form_Status_MC.MSFlexGrid1.Rows - 1
         
-        BANDING = "select sum(kapasitas) AS MyCapa from data_mesin where nama_mesin='" & Form_Status_MC.MSFlexGrid1.TextMatrix(rowna, 0) & "'"
-        JUMLAH = "select sum(qty) AS MyTotal from completion_slip where proses_2='" & Form_Status_MC.MSFlexGrid1.TextMatrix(rowna, 0) & "' and date_printed='" & Format(Form_Status_MC.MSFlexGrid1.TextMatrix(1, colna), "YYYY/mm/dd") & "' and shift='" & Form_Status_MC.MSFlexGrid1.TextMatrix(2, colna) & "'"
-        Set rscompletion_slip = conn.Execute(JUMLAH)
-        Set rsdata_mesin = conn.Execute(BANDING)
+        banding = "select sum(kapasitas) AS MyCapa from data_mesin where nama_mesin='" & Form_Status_MC.MSFlexGrid1.TextMatrix(rowna, 0) & "'"
+        jumlah = "select sum(qty) AS MyTotal from completion_slip where proses_2='" & Form_Status_MC.MSFlexGrid1.TextMatrix(rowna, 0) & "' and date_printed='" & Format(Form_Status_MC.MSFlexGrid1.TextMatrix(1, colna), "YYYY/mm/dd") & "' and shift='" & Form_Status_MC.MSFlexGrid1.TextMatrix(2, colna) & "'"
+        Set rscompletion_slip = conn.Execute(jumlah)
+        Set rsdata_mesin = conn.Execute(banding)
         sisaqty = 0
         If Val(Form_Status_MC.MSFlexGrid1.TextMatrix(rowna, colna)) > Val(rsdata_mesin.Fields("MyCapa")) Then
             
@@ -1954,11 +1948,11 @@ For rowna = 3 To Form_Status_MC.MSFlexGrid1.Rows - 1
 For colna = 1 To Form_Status_MC.MSFlexGrid1.Cols - 1
 
 
-JUMLAH = "select sum(qty) AS MyTotal from completion_slip where " & _
+jumlah = "select sum(qty) AS MyTotal from completion_slip where " & _
     "proses_2='" & Form_Status_MC.MSFlexGrid1.TextMatrix(rowna, 0) & "' and " & _
     "date_printed='" & Format(Form_Status_MC.MSFlexGrid1.TextMatrix(1, colna), "YYYY/mm/dd") & "' " & _
     "and shift='" & Form_Status_MC.MSFlexGrid1.TextMatrix(2, colna) & "'"
-Set rscompletion_slip = conn.Execute(JUMLAH)
+Set rscompletion_slip = conn.Execute(jumlah)
 
 
 Form_Status_MC.MSFlexGrid1.TextMatrix(rowna, colna) = IIf(IsNull(rscompletion_slip.Fields("MyTotal")), "-", rscompletion_slip.Fields("MyTotal"))
@@ -1969,11 +1963,11 @@ Next
 End Sub
 
 Sub available_qty()
-JUMLAH = "select sum(qty+ISNULL(qty_pending,0)) AS MyTotal from completion_slip where proses_2='" & Me.cnowinding.Text & "' " & _
+jumlah = "select sum(qty+ISNULL(qty_pending,0)) AS MyTotal from completion_slip where proses_2='" & Me.cnowinding.Text & "' " & _
     "and finish_date='" & Format(Me.dtfinish_date.Value, "YYYY/mm/dd") & "' and shift='" & Me.cshift.Text & "'"
-BANDING = "select sum(kapasitas) AS MyCapa from data_mesin where nama_mesin='" & Me.cnowinding.Text & "'"
-Set rscompletion_slip = conn.Execute(JUMLAH)
-Set rsdata_mesin = conn.Execute(BANDING)
+banding = "select sum(kapasitas) AS MyCapa from data_mesin where nama_mesin='" & Me.cnowinding.Text & "'"
+Set rscompletion_slip = conn.Execute(jumlah)
+Set rsdata_mesin = conn.Execute(banding)
 
 available = Val(rsdata_mesin.Fields("MyCapa")) - Val(IIf(IsNull(rscompletion_slip.Fields("MyTotal")), "-", rscompletion_slip.Fields("MyTotal")))
 
