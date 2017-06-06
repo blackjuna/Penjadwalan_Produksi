@@ -1,0 +1,7 @@
+[ODBC]
+DRIVER=SQL Server
+UID=sa
+DATABASE=penjadwalan_produksi
+WSID=PROD_JFI
+APP=Crystal Reports
+SERVER=REED_ONE-PC\SQLEXPRESS
