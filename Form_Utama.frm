@@ -27,6 +27,7 @@ Begin VB.Form Form_Utama
       TabIndex        =   90
       Text            =   "Text1"
       Top             =   10320
+      Visible         =   0   'False
       Width           =   1695
    End
    Begin VB.TextBox txt_coc 
@@ -34,6 +35,7 @@ Begin VB.Form Form_Utama
       Left            =   6840
       TabIndex        =   89
       Top             =   10440
+      Visible         =   0   'False
       Width           =   1695
    End
    Begin VB.Frame Frame6 
@@ -509,7 +511,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   103546881
+         Format          =   21561345
          CurrentDate     =   41714
       End
       Begin MSComCtl2.DTPicker dtfinish_date 
@@ -521,7 +523,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   103546881
+         Format          =   21561345
          CurrentDate     =   41714
       End
       Begin VB.Label Label4 
@@ -1063,19 +1065,19 @@ Else
     rscompletion_slip.MoveLast
     Z = Val(Mid(rscompletion_slip!no_slip, 11, 7)) + 1
     If Z < 10 Then
-        Me.tno_slip.Text = thn & "-" & tbatchnumber.Text & "-" & "000000" & Z
+        Me.tno_slip.Text = thn & "-" & tlotnumber.Text & "-" & "000000" & Z
     ElseIf Z < 100 Then
-        Me.tno_slip.Text = thn & "-" & tbatchnumber.Text & "-" & "00000" & Z
+        Me.tno_slip.Text = thn & "-" & tlotnumber.Text & "-" & "00000" & Z
     ElseIf Z < 1000 Then
-        Me.tno_slip.Text = thn & "-" & tbatchnumber.Text & "-" & "0000" & Z
+        Me.tno_slip.Text = thn & "-" & tlotnumber.Text & "-" & "0000" & Z
     ElseIf Z < 10000 Then
-        Me.tno_slip.Text = thn & "-" & tbatchnumber.Text & "-" & "000" & Z
+        Me.tno_slip.Text = thn & "-" & tlotnumber.Text & "-" & "000" & Z
     ElseIf Z < 100000 Then
-        Me.tno_slip.Text = thn & "-" & tbatchnumber.Text & "-" & "00" & Z
+        Me.tno_slip.Text = thn & "-" & tlotnumber.Text & "-" & "00" & Z
     ElseIf Z < 1000000 Then
-        Me.tno_slip.Text = thn & "-" & tbatchnumber.Text & "-" & "0" & Z
+        Me.tno_slip.Text = thn & "-" & tlotnumber.Text & "-" & "0" & Z
     ElseIf Z < 10000000 Then
-        Me.tno_slip.Text = thn & "-" & tbatchnumber.Text & "-" & Z
+        Me.tno_slip.Text = thn & "-" & tlotnumber.Text & "-" & Z
     End If
 End If
 'rscompletion_slip.Close
@@ -1566,7 +1568,6 @@ Private Sub Form_Activate()
 '    Call db
  '   conn.CursorLocation = adUseClient
     tno_so.SetFocus
-    
 End Sub
 
 Private Sub Form_Load()
