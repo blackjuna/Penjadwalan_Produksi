@@ -24,7 +24,7 @@ Begin VB.Form Form_Utama
    Begin VB.TextBox txt_coc_no 
       Height          =   285
       Left            =   5040
-      TabIndex        =   88
+      TabIndex        =   86
       Text            =   "Text1"
       Top             =   10320
       Visible         =   0   'False
@@ -33,7 +33,7 @@ Begin VB.Form Form_Utama
    Begin VB.TextBox txt_coc 
       Height          =   285
       Left            =   6840
-      TabIndex        =   87
+      TabIndex        =   85
       Top             =   10440
       Visible         =   0   'False
       Width           =   1695
@@ -42,13 +42,13 @@ Begin VB.Form Form_Utama
       Caption         =   "Certificate"
       Height          =   4335
       Left            =   9120
-      TabIndex        =   85
+      TabIndex        =   83
       Top             =   4800
       Width           =   2295
       Begin MSComctlLib.ListView lv_cert 
          Height          =   3975
          Left            =   120
-         TabIndex        =   86
+         TabIndex        =   84
          Top             =   240
          Width           =   2055
          _ExtentX        =   3625
@@ -67,8 +67,9 @@ Begin VB.Form Form_Utama
       Caption         =   "Add Certificate"
       Height          =   495
       Left            =   7200
-      TabIndex        =   84
+      TabIndex        =   82
       Top             =   9360
+      Visible         =   0   'False
       Width           =   1815
    End
    Begin VB.PictureBox Picture1 
@@ -246,11 +247,27 @@ Begin VB.Form Form_Utama
       TabIndex        =   4
       Top             =   840
       Width           =   3615
-      Begin VB.ComboBox cmb_outer 
+      Begin VB.ComboBox cmb_hoop 
          Height          =   315
          Left            =   1440
          Style           =   2  'Dropdown List
          TabIndex        =   90
+         Top             =   4680
+         Width           =   2055
+      End
+      Begin VB.ComboBox cmb_filler 
+         Height          =   315
+         Left            =   1440
+         Style           =   2  'Dropdown List
+         TabIndex        =   89
+         Top             =   5160
+         Width           =   2055
+      End
+      Begin VB.ComboBox cmb_outer 
+         Height          =   315
+         Left            =   1440
+         Style           =   2  'Dropdown List
+         TabIndex        =   88
          Top             =   4200
          Width           =   2055
       End
@@ -258,36 +275,24 @@ Begin VB.Form Form_Utama
          Height          =   315
          Left            =   1440
          Style           =   2  'Dropdown List
-         TabIndex        =   89
+         TabIndex        =   87
          Top             =   3720
          Width           =   2055
       End
       Begin VB.TextBox Txt_cert 
          Height          =   405
          Left            =   1440
-         TabIndex        =   76
+         TabIndex        =   74
          Top             =   6000
+         Visible         =   0   'False
          Width           =   2055
       End
       Begin VB.TextBox txt_Heat_cert 
          Height          =   405
          Left            =   1440
-         TabIndex        =   74
-         Top             =   5520
-         Width           =   2055
-      End
-      Begin VB.TextBox txt_filler_cert 
-         Height          =   405
-         Left            =   1440
          TabIndex        =   72
-         Top             =   5040
-         Width           =   2055
-      End
-      Begin VB.TextBox txt_hoop_cert 
-         Height          =   405
-         Left            =   1440
-         TabIndex        =   70
-         Top             =   4560
+         Top             =   5520
+         Visible         =   0   'False
          Width           =   2055
       End
       Begin VB.ComboBox tthickness 
@@ -346,8 +351,9 @@ Begin VB.Form Form_Utama
          Caption         =   "Cert. No. Mat."
          Height          =   195
          Left            =   240
-         TabIndex        =   77
+         TabIndex        =   75
          Top             =   6120
+         Visible         =   0   'False
          Width           =   990
       End
       Begin VB.Label Label31 
@@ -355,8 +361,9 @@ Begin VB.Form Form_Utama
          Caption         =   "Heat"
          Height          =   195
          Left            =   240
-         TabIndex        =   75
+         TabIndex        =   73
          Top             =   5640
+         Visible         =   0   'False
          Width           =   345
       End
       Begin VB.Label Label30 
@@ -364,7 +371,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Filler Cert"
          Height          =   195
          Left            =   240
-         TabIndex        =   73
+         TabIndex        =   71
          Top             =   5160
          Width           =   645
       End
@@ -373,7 +380,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Hoop Cert"
          Height          =   195
          Left            =   240
-         TabIndex        =   71
+         TabIndex        =   70
          Top             =   4680
          Width           =   720
       End
@@ -513,7 +520,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   102694913
+         Format          =   101318657
          CurrentDate     =   41714
       End
       Begin MSComCtl2.DTPicker dtfinish_date 
@@ -525,7 +532,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   102694913
+         Format          =   101318657
          CurrentDate     =   41714
       End
       Begin VB.Label Label4 
@@ -728,7 +735,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   2520
-      TabIndex        =   83
+      TabIndex        =   81
       Top             =   9840
       Width           =   90
    End
@@ -739,7 +746,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   840
-      TabIndex        =   82
+      TabIndex        =   80
       Top             =   9840
       Width           =   90
    End
@@ -750,7 +757,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   1680
-      TabIndex        =   81
+      TabIndex        =   79
       Top             =   9840
       Width           =   705
    End
@@ -761,7 +768,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   120
-      TabIndex        =   80
+      TabIndex        =   78
       Top             =   9840
       Width           =   615
    End
@@ -772,7 +779,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   120
-      TabIndex        =   79
+      TabIndex        =   77
       Top             =   9480
       Width           =   840
    End
@@ -786,7 +793,7 @@ Begin VB.Form Form_Utama
       Left            =   1080
       MouseIcon       =   "Form_Utama.frx":0BCD
       MousePointer    =   99  'Custom
-      TabIndex        =   78
+      TabIndex        =   76
       Top             =   9480
       Visible         =   0   'False
       Width           =   90
@@ -1086,10 +1093,16 @@ End If
 'rscompletion_slip.Close
 End Sub
 Sub bersih()
-For Each A In Me
-    If TypeOf A Is TextBox Then A.Text = ""
-    If TypeOf A Is ComboBox Then A.Text = ""
-Next A
+For Each a In Me
+    If TypeOf a Is TextBox Then a.Text = ""
+    If TypeOf a Is ComboBox Then
+        If Not a.Style = 2 Then
+            a.Text = ""
+        Else
+            a.ListIndex = -1
+        End If
+    End If
+Next a
 End Sub
 Sub tampil()
 
@@ -1120,6 +1133,10 @@ Set rscompletion_slip = conn.Execute(cari)
         Me.tproses1.Text = rscompletion_slip.Fields("proses_1")
         Me.cproses2.Text = Me.cnowinding.Text
         Me.tproses3.Text = rscompletion_slip.Fields("proses_3")
+        Me.cmb_inner.Text = rscompletion_slip.Fields("inner_ring_cert")
+        Me.cmb_outer.Text = rscompletion_slip.Fields("outer_ring_cert")
+        Me.cmb_hoop.Text = rscompletion_slip.Fields("hoop_cert")
+        Me.cmb_filler.Text = rscompletion_slip.Fields("filler_cert")
     End If
 
 End Sub
@@ -1204,14 +1221,14 @@ ubah = "UPDATE completion_slip SET no_so='" & tno_so.Text & "'," & _
     "marking_stamp_ir='" & tmarking_ir.Text & "'," & _
     "thickness='" & tthickness.Text & "',proses_1='" & tproses1.Text & "'," & _
     "proses_2='" & cproses2.Text & "',proses_3='" & tproses3.Text & "'," & _
-    "inner_ring_cert='" & txt_inner_cert & "',outer_ring_cert='" & txt_outer_cert & "'," & _
-    "hoop_cert='" & txt_hoop_cert & "',filler_cert='" & txt_filler_cert & "'," & _
-    "heat_no_mat='" & txt_Heat_cert & "', cert_no_mat='""'" & _
+    "inner_ring_cert='" & cmb_inner.Text & "',outer_ring_cert='" & cmb_outer.Text & "'," & _
+    "hoop_cert='" & cmb_hoop.Text & "',filler_cert='" & cmb_filler.Text & "' " & _
     "where no_slip='" & tno_slip.Text & "'"
 Set rscompletion_slip = conn.Execute(ubah)
 Call bersih
 cedit.Caption = "EDIT"
 Call no_slip
+Call coc_no
 Call Build_Results
 Call Warna_List
 Call warning_reschedule
@@ -1232,6 +1249,46 @@ Call warning_reschedule
 
 End If
 
+End Sub
+
+Private Sub cmb_filler_KeyDown(KeyCode As Integer, Shift As Integer)
+    If KeyCode = vbKeyReturn Then
+        If KeyCode = vbKeyReturn Then
+            If KeyCode = vbKeyReturn Then
+                cproses2.SetFocus
+            End If
+        End If
+    End If
+End Sub
+
+Private Sub cmb_hoop_KeyDown(KeyCode As Integer, Shift As Integer)
+    If KeyCode = vbKeyReturn Then
+        If KeyCode = vbKeyReturn Then
+            If KeyCode = vbKeyReturn Then
+                cmb_filler.SetFocus
+            End If
+        End If
+    End If
+End Sub
+
+Private Sub cmb_inner_KeyDown(KeyCode As Integer, Shift As Integer)
+    If KeyCode = vbKeyReturn Then
+        If KeyCode = vbKeyReturn Then
+            If KeyCode = vbKeyReturn Then
+                cmb_outer.SetFocus
+            End If
+        End If
+    End If
+End Sub
+
+Private Sub cmb_outer_KeyDown(KeyCode As Integer, Shift As Integer)
+    If KeyCode = vbKeyReturn Then
+        If KeyCode = vbKeyReturn Then
+            If KeyCode = vbKeyReturn Then
+                cmb_hoop.SetFocus
+            End If
+        End If
+    End If
 End Sub
 
 Private Sub cmd_add_cert_Click()
@@ -1316,11 +1373,11 @@ If KeyCode = vbKeyReturn Then
         rschkcode.Close
         Set rschkcode = Nothing
     Else
-        simpan = "INSERT INTO completion_slip (no_slip,no_so,date_printed,delivery_date,finish_date," & _
+        SIMPAN = "INSERT INTO completion_slip (no_slip,no_so,date_printed,delivery_date,finish_date," & _
         "lot_number,batch_number,proses_1,proses_2,proses_3,no_part,shift,jic,size,type,inner_ring,outer_ring," & _
         "hoop,filler," & _
         "marking_stamp_or,marking_stamp_ir,qty,customer,status,note,thickness,deleted,inner_ring_cert," & _
-        "outer_ring_cert,hoop_cert,filler_cert,heat_no_mat,cert_no_mat) VALUES " & _
+        "outer_ring_cert,hoop_cert,filler_cert) VALUES " & _
         "('" & tno_slip.Text & "'," & _
         "'" & tno_so.Text & "','" & Format(dtdate_printed.Value, "YYYY/mm/dd") & "'," & _
         "'','" & Format(dtfinish_date.Value, "YYYY/mm/dd") & "'," & _
@@ -1332,9 +1389,9 @@ If KeyCode = vbKeyReturn Then
         "'" & tmarking_or.Text & "','" & tmarking_ir.Text & "'," & _
         "'" & tqty.Text & "','" & tcustomer.Text & "','" & cstatus.Text & "'," & _
         "'" & tnote.Text & "','" & tthickness.Text & "',0," & _
-        "'" & txt_inner_cert & "','" & txt_outer_cert & "','" & txt_hoop_cert & "'," & _
-        "'" & txt_filler_cert & "','" & txt_Heat_cert & "','" & Txt_cert & "')"
-        Set rscompletion_slip = conn.Execute(simpan)
+        "'" & cmb_inner.Text & "','" & cmb_outer.Text & "','" & cmb_hoop.Text & "'," & _
+        "'" & cmb_filler.Text & "')"
+        Set rscompletion_slip = conn.Execute(SIMPAN)
         Call bersih
         tno_so.SetFocus
         Call no_slip
@@ -1585,6 +1642,31 @@ Private Sub Form_Load()
     rsdata_mesin.Open "select*from certificate_files order by file_name asc", conn, adOpenDynamic, adLockOptimistic
     Do While Not rsdata_mesin.EOF
         cmb_inner.AddItem Mid(rsdata_mesin("file_name"), 1, Len(rsdata_mesin("file_name")) - 4)
+        cmb_inner.ItemData(cmb_inner.NewIndex) = rsdata_mesin!id
+        rsdata_mesin.MoveNext
+    Loop
+    
+    If rsdata_mesin.State = 1 Then rsdata_mesin.Close
+    rsdata_mesin.Open "select*from certificate_files order by file_name asc", conn, adOpenDynamic, adLockOptimistic
+    Do While Not rsdata_mesin.EOF
+        cmb_outer.AddItem Mid(rsdata_mesin("file_name"), 1, Len(rsdata_mesin("file_name")) - 4)
+        cmb_outer.ItemData(cmb_outer.NewIndex) = rsdata_mesin!id
+        rsdata_mesin.MoveNext
+    Loop
+    
+    If rsdata_mesin.State = 1 Then rsdata_mesin.Close
+    rsdata_mesin.Open "select*from certificate_files order by file_name asc", conn, adOpenDynamic, adLockOptimistic
+    Do While Not rsdata_mesin.EOF
+        cmb_hoop.AddItem Mid(rsdata_mesin("file_name"), 1, Len(rsdata_mesin("file_name")) - 4)
+        cmb_hoop.ItemData(cmb_hoop.NewIndex) = rsdata_mesin!id
+        rsdata_mesin.MoveNext
+    Loop
+    
+    If rsdata_mesin.State = 1 Then rsdata_mesin.Close
+    rsdata_mesin.Open "select*from certificate_files order by file_name asc", conn, adOpenDynamic, adLockOptimistic
+    Do While Not rsdata_mesin.EOF
+        cmb_filler.AddItem Mid(rsdata_mesin("file_name"), 1, Len(rsdata_mesin("file_name")) - 4)
+        cmb_filler.ItemData(cmb_filler.NewIndex) = rsdata_mesin!id
         rsdata_mesin.MoveNext
     Loop
 
@@ -2269,7 +2351,7 @@ Private Sub tthickness_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeyReturn Then
     If KeyCode = vbKeyReturn Then
         If KeyCode = vbKeyReturn Then
-            txt_inner_cert.SetFocus
+            cmb_inner.SetFocus
         End If
     End If
 End If
@@ -2541,3 +2623,6 @@ Private Sub coc_no()
         End If
     End If
 End Sub
+
+Private save_certificate()
+
