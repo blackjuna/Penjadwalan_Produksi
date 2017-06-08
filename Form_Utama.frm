@@ -511,7 +511,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   102105089
+         Format          =   101711873
          CurrentDate     =   41714
       End
       Begin MSComCtl2.DTPicker dtfinish_date 
@@ -523,7 +523,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   102105089
+         Format          =   101711873
          CurrentDate     =   41714
       End
       Begin VB.Label Label4 
@@ -863,6 +863,7 @@ Private Sub data_mesin()
     Do While Not rsdata_mesin.EOF
         cnowinding.AddItem rsdata_mesin("nama_mesin")
         rsdata_mesin.MoveNext
+        
     Loop
 End Sub
 
