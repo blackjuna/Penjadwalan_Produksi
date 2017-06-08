@@ -24,7 +24,7 @@ Begin VB.Form Form_Utama
    Begin VB.TextBox txt_coc_no 
       Height          =   285
       Left            =   5040
-      TabIndex        =   90
+      TabIndex        =   89
       Text            =   "Text1"
       Top             =   10320
       Visible         =   0   'False
@@ -33,7 +33,7 @@ Begin VB.Form Form_Utama
    Begin VB.TextBox txt_coc 
       Height          =   285
       Left            =   6840
-      TabIndex        =   89
+      TabIndex        =   88
       Top             =   10440
       Visible         =   0   'False
       Width           =   1695
@@ -42,13 +42,13 @@ Begin VB.Form Form_Utama
       Caption         =   "Certificate"
       Height          =   4335
       Left            =   9120
-      TabIndex        =   87
+      TabIndex        =   86
       Top             =   4800
       Width           =   2295
       Begin MSComctlLib.ListView lv_cert 
          Height          =   3975
          Left            =   120
-         TabIndex        =   88
+         TabIndex        =   87
          Top             =   240
          Width           =   2055
          _ExtentX        =   3625
@@ -67,7 +67,7 @@ Begin VB.Form Form_Utama
       Caption         =   "Add Certificate"
       Height          =   495
       Left            =   7200
-      TabIndex        =   86
+      TabIndex        =   85
       Top             =   9360
       Width           =   1815
    End
@@ -246,46 +246,46 @@ Begin VB.Form Form_Utama
       TabIndex        =   4
       Top             =   840
       Width           =   3615
+      Begin VB.ComboBox cmb_inner 
+         Height          =   315
+         Left            =   1440
+         TabIndex        =   90
+         Top             =   3720
+         Width           =   2055
+      End
       Begin VB.TextBox Txt_cert 
          Height          =   405
          Left            =   1440
-         TabIndex        =   78
+         TabIndex        =   77
          Top             =   6000
          Width           =   2055
       End
       Begin VB.TextBox txt_Heat_cert 
          Height          =   405
          Left            =   1440
-         TabIndex        =   76
+         TabIndex        =   75
          Top             =   5520
          Width           =   2055
       End
       Begin VB.TextBox txt_filler_cert 
          Height          =   405
          Left            =   1440
-         TabIndex        =   74
+         TabIndex        =   73
          Top             =   5040
          Width           =   2055
       End
       Begin VB.TextBox txt_hoop_cert 
          Height          =   405
          Left            =   1440
-         TabIndex        =   72
+         TabIndex        =   71
          Top             =   4560
          Width           =   2055
       End
       Begin VB.TextBox txt_outer_cert 
          Height          =   405
          Left            =   1440
-         TabIndex        =   70
+         TabIndex        =   69
          Top             =   4080
-         Width           =   2055
-      End
-      Begin VB.TextBox txt_inner_cert 
-         Height          =   405
-         Left            =   1440
-         TabIndex        =   68
-         Top             =   3600
          Width           =   2055
       End
       Begin VB.ComboBox tthickness 
@@ -344,7 +344,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Cert. No. Mat."
          Height          =   195
          Left            =   240
-         TabIndex        =   79
+         TabIndex        =   78
          Top             =   6120
          Width           =   990
       End
@@ -353,7 +353,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Heat"
          Height          =   195
          Left            =   240
-         TabIndex        =   77
+         TabIndex        =   76
          Top             =   5640
          Width           =   345
       End
@@ -362,7 +362,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Filler Cert"
          Height          =   195
          Left            =   240
-         TabIndex        =   75
+         TabIndex        =   74
          Top             =   5160
          Width           =   645
       End
@@ -371,7 +371,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Hoop Cert"
          Height          =   195
          Left            =   240
-         TabIndex        =   73
+         TabIndex        =   72
          Top             =   4680
          Width           =   720
       End
@@ -380,7 +380,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Outer Ring Cert"
          Height          =   195
          Left            =   240
-         TabIndex        =   71
+         TabIndex        =   70
          Top             =   4200
          Width           =   1095
       End
@@ -389,7 +389,7 @@ Begin VB.Form Form_Utama
          Caption         =   "Inner Ring Cert"
          Height          =   195
          Left            =   240
-         TabIndex        =   69
+         TabIndex        =   68
          Top             =   3720
          Width           =   1065
       End
@@ -511,7 +511,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   21561345
+         Format          =   102105089
          CurrentDate     =   41714
       End
       Begin MSComCtl2.DTPicker dtfinish_date 
@@ -523,7 +523,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   21561345
+         Format          =   102105089
          CurrentDate     =   41714
       End
       Begin VB.Label Label4 
@@ -726,7 +726,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   2520
-      TabIndex        =   85
+      TabIndex        =   84
       Top             =   9840
       Width           =   90
    End
@@ -737,7 +737,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   840
-      TabIndex        =   84
+      TabIndex        =   83
       Top             =   9840
       Width           =   90
    End
@@ -748,7 +748,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   1680
-      TabIndex        =   83
+      TabIndex        =   82
       Top             =   9840
       Width           =   705
    End
@@ -759,7 +759,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   120
-      TabIndex        =   82
+      TabIndex        =   81
       Top             =   9840
       Width           =   615
    End
@@ -770,7 +770,7 @@ Begin VB.Form Form_Utama
       ForeColor       =   &H00404040&
       Height          =   195
       Left            =   120
-      TabIndex        =   81
+      TabIndex        =   80
       Top             =   9480
       Width           =   840
    End
@@ -784,7 +784,7 @@ Begin VB.Form Form_Utama
       Left            =   1080
       MouseIcon       =   "Form_Utama.frx":0BCD
       MousePointer    =   99  'Custom
-      TabIndex        =   80
+      TabIndex        =   79
       Top             =   9480
       Visible         =   0   'False
       Width           =   90
@@ -1577,6 +1577,13 @@ Private Sub Form_Load()
     cshift.AddItem "1"
     cshift.AddItem "2"
     cstatus.AddItem "On Going"
+    
+    If rsdata_mesin.State = 1 Then rsdata_mesin.Close
+    rsdata_mesin.Open "select*from certificate_files order by file_name asc", conn, adOpenDynamic, adLockOptimistic
+    Do While Not rsdata_mesin.EOF
+        cmb_inner.AddItem Mid(rsdata_mesin("file_name"), 1, Len(rsdata_mesin("file_name")) - 4)
+        rsdata_mesin.MoveNext
+    Loop
 
 '    If rscode.State = 1 Then rscode.Close
 '    rscode.Open "select*from code where deleted=0", conn
@@ -2265,26 +2272,26 @@ If KeyCode = vbKeyReturn Then
 End If
 End Sub
 
-Private Sub Txt_cert_KeyPress(KeyAscii As Integer)
+'Private Sub Txt_cert_KeyPress(KeyAscii As Integer)
+'    Select Case KeyAscii
+'       Case vbKeyReturn
+'            cproses2.SetFocus
+'    End Select
+'End Sub
+
+Private Sub txt_filler_cert_KeyPress(KeyAscii As Integer)
     Select Case KeyAscii
        Case vbKeyReturn
             cproses2.SetFocus
     End Select
 End Sub
 
-Private Sub txt_filler_cert_KeyPress(KeyAscii As Integer)
-    Select Case KeyAscii
-       Case vbKeyReturn
-            txt_Heat_cert.SetFocus
-    End Select
-End Sub
-
-Private Sub txt_Heat_cert_KeyPress(KeyAscii As Integer)
-    Select Case KeyAscii
-       Case vbKeyReturn
-            Txt_cert.SetFocus
-    End Select
-End Sub
+'Private Sub txt_Heat_cert_KeyPress(KeyAscii As Integer)
+'    Select Case KeyAscii
+'       Case vbKeyReturn
+'            Txt_cert.SetFocus
+'    End Select
+'End Sub
 
 Private Sub txt_hoop_cert_KeyPress(KeyAscii As Integer)
     Select Case KeyAscii
