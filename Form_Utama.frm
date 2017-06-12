@@ -520,7 +520,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   101318657
+         Format          =   101711873
          CurrentDate     =   41714
       End
       Begin MSComCtl2.DTPicker dtfinish_date 
@@ -532,7 +532,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   101318657
+         Format          =   101711873
          CurrentDate     =   41714
       End
       Begin VB.Label Label4 
@@ -1093,16 +1093,16 @@ End If
 'rscompletion_slip.Close
 End Sub
 Sub bersih()
-For Each a In Me
-    If TypeOf a Is TextBox Then a.Text = ""
-    If TypeOf a Is ComboBox Then
-        If Not a.Style = 2 Then
-            a.Text = ""
+For Each A In Me
+    If TypeOf A Is TextBox Then A.Text = ""
+    If TypeOf A Is ComboBox Then
+        If Not A.Style = 2 Then
+            A.Text = ""
         Else
-            a.ListIndex = -1
+            A.ListIndex = -1
         End If
     End If
-Next a
+Next A
 End Sub
 Sub tampil()
 
@@ -1133,10 +1133,29 @@ Set rscompletion_slip = conn.Execute(cari)
         Me.tproses1.Text = rscompletion_slip.Fields("proses_1")
         Me.cproses2.Text = Me.cnowinding.Text
         Me.tproses3.Text = rscompletion_slip.Fields("proses_3")
-        Me.cmb_inner.Text = rscompletion_slip.Fields("inner_ring_cert")
-        Me.cmb_outer.Text = rscompletion_slip.Fields("outer_ring_cert")
-        Me.cmb_hoop.Text = rscompletion_slip.Fields("hoop_cert")
-        Me.cmb_filler.Text = rscompletion_slip.Fields("filler_cert")
+        If rscompletion_slip!inner_ring_cert = "" Then
+            cmb_inner.ListIndex = -1
+        Else
+            Me.cmb_inner.Text = rscompletion_slip.Fields("inner_ring_cert")
+        End If
+        
+        If rscompletion_slip!outer_ring_cert = "" Then
+            cmb_inner.ListIndex = -1
+        Else
+            Me.cmb_outer.Text = rscompletion_slip.Fields("outer_ring_cert")
+        End If
+        
+        If rscompletion_slip!hoop_cert = "" Then
+            cmb_inner.ListIndex = -1
+        Else
+            Me.cmb_hoop.Text = rscompletion_slip.Fields("hoop_cert")
+        End If
+        
+        If rscompletion_slip!filler_cert = "" Then
+            cmb_inner.ListIndex = -1
+        Else
+            Me.cmb_filler.Text = rscompletion_slip.Fields("filler_cert")
+        End If
     End If
 
 End Sub
@@ -1225,10 +1244,12 @@ ubah = "UPDATE completion_slip SET no_so='" & tno_so.Text & "'," & _
     "hoop_cert='" & cmb_hoop.Text & "',filler_cert='" & cmb_filler.Text & "' " & _
     "where no_slip='" & tno_slip.Text & "'"
 Set rscompletion_slip = conn.Execute(ubah)
+Call coc_no
+Call save_certificate
 Call bersih
 cedit.Caption = "EDIT"
 Call no_slip
-Call coc_no
+
 Call Build_Results
 Call Warna_List
 Call warning_reschedule
@@ -1373,7 +1394,7 @@ If KeyCode = vbKeyReturn Then
         rschkcode.Close
         Set rschkcode = Nothing
     Else
-        SIMPAN = "INSERT INTO completion_slip (no_slip,no_so,date_printed,delivery_date,finish_date," & _
+        simpan = "INSERT INTO completion_slip (no_slip,no_so,date_printed,delivery_date,finish_date," & _
         "lot_number,batch_number,proses_1,proses_2,proses_3,no_part,shift,jic,size,type,inner_ring,outer_ring," & _
         "hoop,filler," & _
         "marking_stamp_or,marking_stamp_ir,qty,customer,status,note,thickness,deleted,inner_ring_cert," & _
@@ -1391,11 +1412,12 @@ If KeyCode = vbKeyReturn Then
         "'" & tnote.Text & "','" & tthickness.Text & "',0," & _
         "'" & cmb_inner.Text & "','" & cmb_outer.Text & "','" & cmb_hoop.Text & "'," & _
         "'" & cmb_filler.Text & "')"
-        Set rscompletion_slip = conn.Execute(SIMPAN)
+        Set rscompletion_slip = conn.Execute(simpan)
+        Call coc_no
+        Call save_certificate
         Call bersih
         tno_so.SetFocus
         Call no_slip
-        Call coc_no
         Call Build_Results
         Call Warna_List
         Call warning_reschedule
@@ -2624,5 +2646,77 @@ Private Sub coc_no()
     End If
 End Sub
 
-Private save_certificate()
+Private Sub save_certificate()
+    Dim idcs As String
+    Dim idcertificate As String
+    Dim insertidcert As String
+    
+    If vread.State = 1 Then vread.Close
+    strsql = "select id from completion_slip where no_slip ='" & tno_slip.Text & "' "
+    vread.Open strsql, conn, adOpenDynamic, adLockOptimistic
+    If Not vread.EOF Then
+        idcs = vread!id
+    End If
+    
+    If vread.State = 1 Then vread.Close
+    strsql = "select cs_files.id, certificate_files.is_coc, certificate_files.id as certificate_id from cs_files " & _
+        "Left join certificate_files on cs_files.id_certificate_files =certificate_files.id " & _
+        "where id_cs='" & idcs & "' and certificate_files.is_coc = 1 "
+    vread.Open strsql, conn, adOpenDynamic, adLockOptimistic
+    If Not vread.EOF Then
+        idcertificate = vread!certificate_id
+    End If
+    
+    strsql = "delete from cs_files where id_cs = '" & idcs & "' and id_certificate_files <> '" & idcertificate & "' "
+    conn.Execute (strsql)
+    
+    If cmb_inner.Text <> "" Then
+        If vread.State = 1 Then vread.Close
+        strsql = "Select id from certificate_files where substring(file_name, 1, Len(file_name) - 4) ='" & cmb_inner & "' "
+        vread.Open strsql, conn, adOpenDynamic, adLockOptimistic
+        If Not vread.EOF Then
+            insertidcert = vread!id
+            strsql = "insert into cs_files(id_cs,id_certificate_files,deleted) " & _
+                "values ('" & idcs & "', '" & insertidcert & "',0)"
+            conn.Execute (strsql)
+        End If
+    End If
+    
+    If cmb_outer.Text <> "" And cmb_outer.Text <> cmb_inner.Text Then
+        If vread.State = 1 Then vread.Close
+        strsql = "Select id from certificate_files where substring(file_name, 1, Len(file_name) - 4) ='" & cmb_outer & "' "
+        vread.Open strsql, conn, adOpenDynamic, adLockOptimistic
+        If Not vread.EOF Then
+            insertidcert = vread!id
+            strsql = "insert into cs_files(id_cs,id_certificate_files,deleted) " & _
+                "values ('" & idcs & "', '" & insertidcert & "',0)"
+            conn.Execute (strsql)
+        End If
+    End If
+    
+    If cmb_hoop.Text <> "" Then
+        If vread.State = 1 Then vread.Close
+        strsql = "Select id from certificate_files where substring(file_name, 1, Len(file_name) - 4) ='" & cmb_hoop & "' "
+        vread.Open strsql, conn, adOpenDynamic, adLockOptimistic
+        If Not vread.EOF Then
+            insertidcert = vread!id
+            strsql = "insert into cs_files(id_cs,id_certificate_files,deleted) " & _
+                "values ('" & idcs & "', '" & insertidcert & "',0)"
+            conn.Execute (strsql)
+        End If
+    End If
+    
+    If cmb_filler.Text <> "" Then
+        If vread.State = 1 Then vread.Close
+        strsql = "Select id from certificate_files where substring(file_name, 1, Len(file_name) - 4) ='" & cmb_filler & "' "
+        vread.Open strsql, conn, adOpenDynamic, adLockOptimistic
+        If Not vread.EOF Then
+            insertidcert = vread!id
+            strsql = "insert into cs_files(id_cs,id_certificate_files,deleted) " & _
+                "values ('" & idcs & "', '" & insertidcert & "',0)"
+            conn.Execute (strsql)
+        End If
+    End If
+    
+End Sub
 
