@@ -520,7 +520,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   101711873
+         Format          =   96927745
          CurrentDate     =   41714
       End
       Begin MSComCtl2.DTPicker dtfinish_date 
@@ -532,7 +532,7 @@ Begin VB.Form Form_Utama
          _ExtentX        =   4683
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   101711873
+         Format          =   96927745
          CurrentDate     =   41714
       End
       Begin VB.Label Label4 
@@ -2545,11 +2545,11 @@ Private Sub coc_no()
         
         If date_now <> last_date Then
             coc_number = Val(Left(vread!Title, 4)) + 1
-            If batch_number < 10 Then
+            If coc_number < 10 Then
                 Me.txt_coc.Text = "000" & coc_number
-            ElseIf batch_number < 100 Then
+            ElseIf coc_number < 100 Then
                 Me.txt_coc.Text = "00" & coc_number
-            ElseIf batch_number < 1000 Then
+            ElseIf coc_number < 1000 Then
                 Me.txt_coc.Text = "0" & coc_number
             Else
                 Me.txt_coc.Text = coc_number
